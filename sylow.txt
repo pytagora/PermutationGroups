@@ -1,0 +1,24 @@
+# 
+# code 1
+# permutation group
+# Valentino Skobljanec
+#
+
+# define group
+G:=Group((1,2,3,4,5,6,7,8,9,10,11),(3,7,11,8),(4,10,5,6));
+# define new group S as a Sylow 2-subgroup of group G
+S:=SylowSubgroup(G,2);
+# define symmetric group of order 8
+S8:=SymmetricGroup(8);
+# subgroup of group S8
+H:=Subgroup(S8);
+
+# looking for subgroup G which will be isomorphic with H and defined with 8 elements
+while IsomorphismGroup(S,H) = false do
+    H:=Subgroup(S8);    
+od;
+
+K:=Subgroup(G);
+while IsSubgroup(K,S) = true or Order(K) % 2 = 1 or K in Pgroup(2) = true do
+    K:=Subgroup(G);
+od;
