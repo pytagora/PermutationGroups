@@ -1,0 +1,59 @@
+#
+# code 2
+# permutation group
+# Valentino Skobljanec
+#
+
+G:=Group((1,4,8,12,16)(2,6,10,14,18)(3,7,11,15,19)(5,9,13,17,20),(1,2,3,5)(4,10,19,17)(6,11,20,12)(7,13,16,14)(8,18,15,9));
+
+norm:=Difference(NormalSubgroups(G), [Group(()), G]);
+pairs:=[];
+
+for N in norm do 
+	Add(pairs, [G/N,N]);
+od;
+
+subgps:=Subgroups(G);;
+list:=[];
+p:=Length(pairs);
+
+for i in [1..p] do
+	for H in subgps do
+		if IsIsomorphicGroup(pairs[i][1], H) and Intersection (pairs[i][2],H) = Group(()) then
+			Add(list, [pairs[i][2], H]);
+		fi;	
+	od;
+od;
+
+dir:=[];
+semdir:=[];
+
+for pair in list do
+	if pair[2] in norm then
+		Add(dir, pair);
+	else 
+		Add(semdir, pair);
+	fi;
+od;
+
+l:=Size(dir);
+D:=ShallowCopy(dir);
+d:=[];
+
+for i in [1..l] do
+	for j in [i+1..l] do
+		if IsIsomorphicGroup(dir[i][1],dir[j][1]) and IsIsomorphicGroup(dir[i][2],dir[j][2]) then
+			Add(d, dir[i]);
+		fi;
+	od;
+od;
+
+dif:=Difference(D,d);	
+Size(dif);			
+Size(dif[1][1]);			
+IsSymmetricGroup(dif[1][1]);	
+IsCyclic(dif[1][1]);		
+Size(dif[1][2]);			
+IsCyclic(dif[1][2]);		
+IsSymmetricGroup(dif[1][2]);	
+StructureDescription(G);	
