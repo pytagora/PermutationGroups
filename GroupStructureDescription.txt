@@ -1,6 +1,6 @@
 #
 # code 2
-# permutation group
+# permutation groups
 # Valentino Skobljanec
 #
 
