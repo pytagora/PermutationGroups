@@ -1,0 +1,18 @@
+# 
+# code 5
+# permutation groups
+# Valentino Skobljanec
+#
+
+# loading libs
+LoadPackage("SONATA");
+LoadPackage("GUAVA");
+# define group A5 
+A5:=AlternatingGroup(5);
+# define group C5 
+Z5:=CyclicGroup(5);
+# define group G as a product of groups A5 and C5
+G:=DirectProduct(A5,Z5);
+# relationship between G and socle of G
+Socle(G)=G; # true
+# they are equal
